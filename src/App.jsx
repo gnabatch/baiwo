@@ -4,13 +4,11 @@ import linkRedirect from './config';
 import profileImage from '../public/profil.png'
 import bannerImage from '../public/banner.png'
 import metaImage from '../public/meta.gif'
-import { inject } from '@vercel/analytics';
 
 
 function App() {
 
 	useEffect(() => {
-		inject();
 		setTimeout(() => {
 			confetti()
 		}, 100);
