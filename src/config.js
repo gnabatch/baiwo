@@ -1,3 +1,3 @@
-const linkRedirect = 'https://google.com';
+const linkRedirect = 'https://github.com';
 
 export default linkRedirect;

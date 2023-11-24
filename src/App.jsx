@@ -37,7 +37,7 @@ function App() {
 					<div className='bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-[70%] p-[1px] rounded-md'>
 						<input className='rounded-md p-1 w-full focus:outline-none' placeholder='Nama Lengkap'/>
 					</div>
-					<a className='border p-3 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-slate-50 font-bold w-[70%] shadow-md text-center cursor-pointer' href={linkRedirect}>Lanjutkan</a>
+					<a className='border p-3 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-slate-50 font-bold w-[70%] shadow-md text-center cursor-pointer hover:bg-gradient-to-tr hover:from-rose-400 hover:via-fuchsia-500 hover:to-indigo-500' href={linkRedirect}>Lanjutkan</a>
 					<img src='/public/meta.gif' className='mt-5'/>
 					</div>
 					<img src='/public/banner.png' alt='' className='w-full rounded-md bg-slate-900 mt-10'/>
@@ -50,6 +50,9 @@ function App() {
 						<li>3. Hadiah hanya akan dikirim kepada penerima yang telah menyelesaikan langkah-langkah yang telah ditentukan.</li>
 						<li>4. Hadiah tidak berlaku jika penerima tidak menyelesaikan langkah-langkah tersebut.</li>
 					</ul>
+				</div>
+				<div className=''>
+					<p className='text-center text-sm font-thin'>Official Baim Wong @2023</p>
 				</div>
 			</div>
 		</>
