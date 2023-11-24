@@ -1,6 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import linkRedirect from './config';
+import profileImage from '../public/profil.png'
+import bannerImage from '../public/banner.png'
+import metaImage from '../public/meta.gif'
 
 
 function App() {
@@ -15,7 +18,7 @@ function App() {
 		<>
 			<div className='flex justify-center items-center flex-col gap-3 max-w-md h-full bg-slate-100 mx-auto p-2'>
 				<div className="flex flex-col items-center mt-5">
-					<img src='/public/profil.png' width={80} height={80} className='bg-slate-600 border rounded-full shadow-md'/>
+					<img src={profileImage} width={80} height={80} className='bg-slate-600 border rounded-full shadow-md'/>
 					<div className='flex items-center'>
 							<p className='text-lg font-semibold mr-1 ml-3 mt-1'>Baim Wong</p>
 							<svg fill='none' height='16' viewBox='0 0 16 16' width='16' >
@@ -38,9 +41,9 @@ function App() {
 						<input className='rounded-md p-1 w-full focus:outline-none' placeholder='Nama Lengkap'/>
 					</div>
 					<a className='border p-3 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-slate-50 font-bold w-[70%] shadow-md text-center cursor-pointer hover:bg-gradient-to-tr hover:from-rose-400 hover:via-fuchsia-500 hover:to-indigo-500' href={linkRedirect}>Lanjutkan</a>
-					<img src='/public/meta.gif' className='mt-5'/>
+					<img src={metaImage} className='mt-5'/>
 					</div>
-					<img src='/public/banner.png' alt='' className='w-full rounded-md bg-slate-900 mt-10'/>
+					<img src={bannerImage} alt='' className='w-full rounded-md bg-slate-900 mt-10'/>
 				</div>
 				<div className='mx-3 p-2 bg-white rounded-md'>
 					<h3 className='font-bold mb-3'>Syarat-syarat untuk mendapatkan hadiah:</h3>
