@@ -4,12 +4,13 @@ import linkRedirect from './config';
 import profileImage from '../public/profil.png'
 import bannerImage from '../public/banner.png'
 import metaImage from '../public/meta.gif'
-import { Analytics } from '@vercel/analytics/react';
+import { inject } from '@vercel/analytics';
 
 
 function App() {
 
 	useEffect(() => {
+		inject();
 		setTimeout(() => {
 			confetti()
 		}, 100);
@@ -59,7 +60,6 @@ function App() {
 					<p className='text-center text-sm font-thin'>Official Baim Wong @2023</p>
 				</div>
 			</div>
-			<Analytics/>
 		</>
       
   )
