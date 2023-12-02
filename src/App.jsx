@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import linkRedirect from './config';
-import profileImage from '../public/profil.png'
-import bannerImage from '../public/banner.png'
-import metaImage from '../public/meta.gif'
+import configData from './config'
+import metaImage from './assets/meta.gif'
 
 
 function App() {
+
+	const {affLink, bannerPic, profileName, profilePic} = configData;
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -18,9 +18,9 @@ function App() {
 		<>
 			<div className='flex justify-center items-center flex-col gap-3 max-w-md h-full bg-slate-100 mx-auto p-2'>
 				<div className="flex flex-col items-center mt-5">
-					<img src={profileImage} width={80} height={80} className='bg-slate-600 border rounded-full shadow-md'/>
+					<img src={profilePic} className='w-[80px] h-[80px] bg-slate-600 border rounded-full shadow-md object-cover'/>
 					<div className='flex items-center'>
-							<p className='text-lg font-semibold mr-1 ml-3 mt-1'>Baim Wong</p>
+							<p className='text-lg font-semibold mr-1 ml-3 mt-1'>{profileName}</p>
 							<svg fill='none' height='16' viewBox='0 0 16 16' width='16' >
 								<path d='M8 0L9.99182 1.3121L12.3696 1.29622L13.3431 3.48797L15.3519 4.77336L14.9979 7.14888L16 9.32743L14.431 11.1325L14.1082 13.5126L11.8223 14.1741L10.277 16L8 15.308L5.72296 16L4.17772 14.1741L1.89183 13.5126L1.569 11.1325L0 9.32743L1.00206 7.14888L0.648112 4.77336L2.65693 3.48797L3.6304 1.29622L6.00818 1.3121L8 0Z' fill='#0095F6'>
 								</path>
@@ -40,10 +40,10 @@ function App() {
 					<div className='bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-[70%] p-[1px] rounded-md'>
 						<input className='rounded-md p-1 w-full focus:outline-none' placeholder='Nama Lengkap'/>
 					</div>
-					<a className='border p-3 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-slate-50 font-bold w-[70%] shadow-md text-center cursor-pointer hover:bg-gradient-to-tr hover:from-rose-400 hover:via-fuchsia-500 hover:to-indigo-500' href={linkRedirect}>Lanjutkan</a>
+					<a className='border p-3 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-slate-50 font-bold w-[70%] shadow-md text-center cursor-pointer hover:bg-gradient-to-tr hover:from-rose-400 hover:via-fuchsia-500 hover:to-indigo-500' href={affLink}>Lanjutkan</a>
 					<img src={metaImage} className='mt-5'/>
 					</div>
-					<img src={bannerImage} alt='' className='w-full rounded-md bg-slate-900 mt-10'/>
+					<img src={bannerPic} alt='' className='w-full rounded-md bg-slate-900 mt-10'/>
 				</div>
 				<div className='mx-3 p-2 bg-white rounded-md'>
 					<h3 className='font-bold mb-3'>Syarat-syarat untuk mendapatkan hadiah:</h3>
@@ -55,7 +55,7 @@ function App() {
 					</ul>
 				</div>
 				<div className=''>
-					<p className='text-center text-sm font-thin'>Official Baim Wong @2023</p>
+					<p className='text-center text-sm font-thin'>Official {profileName} @2023</p>
 				</div>
 			</div>
 		</>
