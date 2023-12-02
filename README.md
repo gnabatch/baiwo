@@ -9,10 +9,10 @@ Currently, two official plugins are available:
 
 # Environment Variables
 
-> VITE_AFF_LINK=https://smartlink.com/lead
-> VITE_PROFILE_URL=https://someimage.com/profile_image.png
-> VITE_BANNER_URL=https://someimage.com/banner.png
-> VITE_PROFILE_NAME=Nama Gwehh
+- VITE_AFF_LINK=https://smartlink.com/lead
+- VITE_PROFILE_URL=https://someimage.com/profile_image.png
+- VITE_BANNER_URL=https://someimage.com/banner.png
+- VITE_PROFILE_NAME=Freddy MrCurry
 
 # Installation:
 
