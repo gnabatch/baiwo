@@ -1,4 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import confetti from 'canvas-confetti';
 import configData from './config'
 import metaImage from './assets/meta.gif'
@@ -6,7 +8,57 @@ import metaImage from './assets/meta.gif'
 
 function App() {
 
-	const {affLink, bannerPic, profileName, profilePic} = configData;
+	const {affLink, bannerPic, profileName, profilePic, sheetUrl} = configData;
+	const [nama, setNama] = useState("")
+	const [wa, setWA] = useState("")
+	const [isLoading, setIsLoading] = useState(false)
+
+	const handleChange = (e) => {
+		if (e.target.name == "nama") {
+			setNama(e.target.value)
+		}
+		if (e.target.name == "wa") {
+			setWA(e.target.value)
+		}
+	}
+
+	const handleClick = async () => {
+		const btn = document.getElementById("btn")
+
+		// console.log(nama,wa)
+		if (nama.length < 2) {
+			toast.error("Mohon isi nama dengan benar!")
+			// return;
+		}
+
+		if (wa.length < 10) {
+			toast.error("Mohon isi nomor WA dengan benar!")
+			return;
+		}
+
+		let forms = new FormData()
+		forms.append("Nama", nama)
+		forms.append("Wa", wa)
+
+		btn.setAttribute("disabled", true)
+		setIsLoading(prev => !prev)
+
+		// console.log(forms)
+		const res = await sendData(forms)
+		console.log(res)
+
+		window.location.replace(affLink)
+
+	}
+
+	const sendData = async (data) => {
+		const result = await fetch(sheetUrl, {
+			method: "POST",
+			body: data
+		})
+		const jsonResponse = await result.json()
+		return jsonResponse
+	}
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -36,11 +88,20 @@ function App() {
 				</div>
 				<div className='flex flex-col items-center gap-2 w-[90%] mt-7'>
 					<div className='flex flex-col gap-3 items-center p-3 rounded-md w-full bg-white'>
-					<h3 className='text-base font-medium italic'>Silahkan isi nama lengkap anda :</h3>
+					<h3 className='text-base font-medium italic'>Silahkan isi data diri anda :</h3>
 					<div className='bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-[70%] p-[1px] rounded-md'>
-						<input className='rounded-md p-1 w-full focus:outline-none' placeholder='Nama Lengkap'/>
+						<input type='text' name='nama' className='rounded-md p-1 w-full focus:outline-none' placeholder='Nama Lengkap' onChange={(e) => handleChange(e)} required/>
 					</div>
-					<a className='border p-3 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-slate-50 font-bold w-[70%] shadow-md text-center cursor-pointer hover:bg-gradient-to-tr hover:from-rose-400 hover:via-fuchsia-500 hover:to-indigo-500' href={affLink}>Lanjutkan</a>
+					<div className='bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 w-[70%] p-[1px] rounded-md'>
+						<input type='text' name='wa' className='rounded-md p-1 w-full focus:outline-none' placeholder='No. Whatsapp' onChange={(e) => handleChange(e)} required/>
+					</div>
+					<button className='border p-3 rounded-md bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-slate-50 font-bold w-[70%] shadow-md text-center cursor-pointer hover:bg-gradient-to-tr hover:from-rose-400 hover:via-fuchsia-500 hover:to-indigo-500' id='btn' onClick={() => handleClick()}>
+						{isLoading && <svg aria-hidden="true" role="status" className="inline w-5 h-5 me-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
+							<path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
+						</svg>}
+						{isLoading ? "Loading": "Lanjutkan"}
+					</button>
 					<img src={metaImage} className='mt-5'/>
 					</div>
 					<img src={bannerPic} alt='' className='w-full rounded-md bg-slate-900 mt-10'/>
@@ -57,6 +118,20 @@ function App() {
 				<div className=''>
 					<p className='text-center text-sm font-thin'>Official {profileName} @2023</p>
 				</div>
+				<ToastContainer
+					position="top-right"
+					autoClose={5000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme="light"
+					/>
+					{/* Same as */}
+				<ToastContainer />
 			</div>
 		</>
       
