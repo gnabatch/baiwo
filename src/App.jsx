@@ -28,7 +28,7 @@ function App() {
 		// console.log(nama,wa)
 		if (nama.length < 2) {
 			toast.error("Mohon isi nama dengan benar!")
-			// return;
+			return;
 		}
 
 		if (wa.length < 10) {
